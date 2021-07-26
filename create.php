@@ -1,15 +1,16 @@
 <?php
 require "db.php";
-if(isset ($_POST["nom"]) && isset($_POST["numero"]) && isset($_POST["position"])){
+$message = "";
+if (isset($_POST["nom"]) && isset($_POST["numero"]) && isset($_POST["position"])) {
     $nom = $_POST["nom"];
     $numero = $_POST["numero"];
     $position = $_POST["position"];
     $sql = "insert into joueur (nom, numero, position) values (:nom, :numero, :position)";
     $statement = $connection->prepare($sql);
-    if($statement->execute([":nom"=>$nom, ":numero"=>$numero, ":position"=>$position])){
-    print " a jour avec succes";
+    if ($statement->execute([":nom" => $nom, ":numero" => $numero, ":position" => $position])) {
+        $message = " a jour avec succes";
     };
-}  
+}
 ?>
 
 <?php include('./header.php') ?>
@@ -17,6 +18,13 @@ if(isset ($_POST["nom"]) && isset($_POST["numero"]) && isset($_POST["position"])
 <div class="container">
     <div class="row">
         <div class="col-md-6 my-5">
+            <?php if (!empty($message)) : ?>
+                <div class="alert alert-success" role="alert">
+                    <?= $message; ?>
+                
+                </div>
+            <?php endif; ?>
+
             <form method="post">
                 <div class="form-group">
                     <label>Nom</label>
