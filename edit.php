@@ -1,3 +1,16 @@
+<?php
+require "db.php";
+$sql =  "SELECT * FROM joueur WHERE id = :id";
+$id = $_GET["id"];
+$statement = $connection->prepare($sql);
+$statement->execute([":id" => $id]);
+$joueur = $statement->fetch(PDO::FETCH_OBJ)
+?>
+
+
+
+
+
 <?php include('./header.php') ?>
 <h1>Ajouter un joueur</h1>
 <div class="container">
@@ -13,15 +26,15 @@
             <form method="post">
                 <div class="form-group">
                     <label>Nom</label>
-                    <input type="text" name="nom" class="form-control">
+                    <input type="text" value="<?=$joueur->nom ?>" name="nom" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Numéro</label>
-                    <input type="number" name="numero" class="form-control">
+                    <input type="number" value="<?=$joueur->numero ?>" name="numero" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Position</label>
-                    <input type="text" name="position" class="form-control">
+                    <input type="text" value="<?=$joueur->position ?>" name="position" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
