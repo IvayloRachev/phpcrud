@@ -38,6 +38,14 @@ if (isset($_POST["nom"]) && isset($_POST["numero"]) && isset($_POST["position"])
                     <label>Position</label>
                     <input type="text" name="position" class="form-control">
                 </div>
+                <div class="form-group">
+    <label for="exampleFormControlSelect1">Son club</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>PSG</option>
+      <option>Bayern</option>
+   
+    </select>
+  </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
